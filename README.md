@@ -16,6 +16,7 @@ Refer the section below on how to [get a specific commit(https://github.com/prem
 | Sl.No		| Topic                                       				| Commit Hash           								|
 |:---------:|-----------------------------------------------------------|:-----------------------------------------------------:|
 | 	1.		| Spring Rest CRUD Operations on Employee					| effce06e231701b987568c4d4b2303404b535c75				|
+| 	2.		| Autowired beans and added EmployeeService					| efb1d27967232e5f81166bb8d0dac323ce1c0596				|
 
 
 ### How to get certain commit from GitHub project
