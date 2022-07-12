@@ -1,6 +1,6 @@
 package my.play.ground.springrestcrud.controllers;
 
-import static org.assertj.core.api.Assertions.assertThat;
+//import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
@@ -16,12 +16,14 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+//import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -127,10 +129,7 @@ public class EmployeeControllerTest {
 	@Test
 	public void createNewEmploye_ShouldReturnHttp200_NewEmployeeWithIdPopulated()
 			throws JsonProcessingException, Exception {
-		Employee employee = new Employee();
-		employee.setId(1L);
-		employee.setName("Gandalf");
-		employee.setRole("wizard");
+		Employee employee = new Employee(1, "Gandalf", "wizard");
 
 		// arrange - train your mock
 		// given(employeeService.createEmployee(any())).willReturn(employee); // (Or)
@@ -160,10 +159,7 @@ public class EmployeeControllerTest {
 		/**
 		 * -------------------- First insert an new employee --------------------
 		 */
-		Employee employee = new Employee();
-		employee.setId(1L);
-		employee.setName("Gimli");
-		employee.setRole("dwarf");
+		Employee employee = new Employee(1, "Gimli", "dwarf");
 
 		// arrange - train your mock
 		given(employeeService.createEmployee(employeeArgumentCaptor.capture())).willReturn(employee);
@@ -214,10 +210,7 @@ public class EmployeeControllerTest {
 		/**
 		 * -------------------- First insert an new employee --------------------
 		 */
-		Employee employee = new Employee();
-		employee.setId(1L);
-		employee.setName("Gimli");
-		employee.setRole("dwarf");
+		Employee employee = new Employee(1, "Gimli", "dwarf");
 
 		// arrange - train your mock
 		given(employeeService.createEmployee(employeeArgumentCaptor.capture())).willReturn(employee);
