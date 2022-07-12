@@ -17,7 +17,12 @@ public class Employee {
 	}
 
 	public Employee(String name, String role) {
-
+		this.name = name;
+		this.role = role;
+	}
+	
+	public Employee(int id, String name, String role) {
+		this.id = Long.valueOf(id);
 		this.name = name;
 		this.role = role;
 	}
@@ -48,7 +53,6 @@ public class Employee {
 
 	@Override
 	public boolean equals(Object o) {
-
 		if (this == o)
 			return true;
 		if (!(o instanceof Employee))

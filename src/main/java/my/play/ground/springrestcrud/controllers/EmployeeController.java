@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import my.play.ground.springrestcrud.exceptions.EmployeeNotFoundException;
 import my.play.ground.springrestcrud.models.Employee;
-import my.play.ground.springrestcrud.repositories.EmployeeRepository;
 import my.play.ground.springrestcrud.services.EmployeeService;
 
 @RestController
