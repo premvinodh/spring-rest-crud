@@ -19,6 +19,8 @@ Refer the section below on how to [get a specific commit(https://github.com/prem
 | 	2.		| Autowired beans and added EmployeeService								| efb1d27967232e5f81166bb8d0dac323ce1c0596				|
 | 	3.		| Added test cases for EmployeeController to EmployeeControllerTest		| bfc6ce1d10cea15e6b3157356a77550bcd5354af				|
 | 	4.		| Added test cases for EmployeeService to EmployeeServiceTest			| e478d6669b2f08aeb5b938aceeeb49ad899bc6dd				|
+| 	5.		| Added test cases for EmployeeRepository methods used in 				| 9a74dc757c290901364678cf3552161433b58768				|
+| 			| EmployeeService to EmployeeRepositoryTest 							| 														|
 
 ### How to get certain commit from GitHub project
 ------------------------------------------------
