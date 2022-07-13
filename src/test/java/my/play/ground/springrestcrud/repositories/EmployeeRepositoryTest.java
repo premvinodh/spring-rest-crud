@@ -1,7 +1,10 @@
 package my.play.ground.springrestcrud.repositories;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +33,7 @@ public class EmployeeRepositoryTest {
 	private TestEntityManager testEntityManager;
 
 	@Test
-	void findAll_ShouldReturnListWith2Employees_When2EmployeesPresent() {
+	public void findAll_ShouldReturnListWith2Employees_When2EmployeesPresent() {
 		// arrange - store the data in the db testEntityManager
 		// NOTE: Id property should not be populated otherwise
 		// persistFlushFind throws 'detached entity passed to persist'
@@ -54,6 +57,80 @@ public class EmployeeRepositoryTest {
 		// clean up the db
 		testEntityManager.remove(employees.get(0));
 		testEntityManager.remove(employees.get(1));
+
+		// verify
+	}
+
+	@Test
+	public void findAll_ShouldReturnEmptyList_WhenNoEmployeesPresent() {
+		// arrange - store the data in the db testEntityManager
+
+		// act & assert
+		List<Employee> employees = employeeRepository.findAll();
+		assertThat(employees.size(), is(0));
+
+		// verify
+	}
+
+	@Test
+	public void findById_ShouldReturn1Employee_WhenEmployeePresent() {
+		// arrange - store the data in the db testEntityManager
+		// NOTE: Id property should not be populated otherwise
+		// persistFlushFind throws 'detached entity passed to persist'
+		Employee employee = new Employee("Bilbo Baggins", "burglar");
+		assertThat(employee.getId(), nullValue());
+		
+		Employee savedEmployee = testEntityManager.persistFlushFind(employee);
+
+		// act & assert
+		Optional<Employee> optEmployee = employeeRepository.findById(savedEmployee.getId());
+		Employee fetchedEmployee = optEmployee.get();
+
+		// Employee
+		assertThat(fetchedEmployee.getId(), notNullValue());
+		assertThat(fetchedEmployee.getName(), is("Bilbo Baggins"));
+		assertThat(fetchedEmployee.getRole(), is("burglar"));
+
+		// clean up the db
+		testEntityManager.remove(fetchedEmployee);
+
+		// verify
+	}
+	
+	@Test
+	public void findById_ShouldReturnEmpty_WhenNoEmployeePresent() {
+		// arrange - store the data in the db testEntityManager
+
+		// act & assert
+		Optional<Employee> optEmployee = employeeRepository.findById(1L);
+
+		// Employee
+		assertThat(optEmployee.isEmpty(), is(true));
+		
+		// verify
+	}
+
+	@Test
+	public void save_ShouldReturnEmployeeObject_WithIdPopulated() {
+		// arrange - store the data in the db testEntityManager
+		// NOTE: Id property should not be populated otherwise
+		// persistFlushFind throws 'detached entity passed to persist'
+		Employee employee = new Employee("Gandalf", "wizard");
+		assertThat(employee.getId(), nullValue());
+		
+		Employee savedEmployee = testEntityManager.persistFlushFind(employee);
+
+		// act & assert
+		Optional<Employee> optEmployee = employeeRepository.findById(savedEmployee.getId());
+		Employee fetchedEmployee = optEmployee.get();
+
+		// Employee
+		assertThat(fetchedEmployee.getId(), notNullValue());
+		assertThat(fetchedEmployee.getName(), is("Gandalf"));
+		assertThat(fetchedEmployee.getRole(), is("wizard"));
+
+		// clean up the db
+		testEntityManager.remove(fetchedEmployee);
 
 		// verify
 	}

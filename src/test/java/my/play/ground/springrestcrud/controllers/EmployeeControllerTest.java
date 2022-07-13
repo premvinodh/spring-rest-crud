@@ -42,7 +42,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * the jsonPath
  * https://github.com/rieckpil/blog-tutorials/blob/master/demo-crud-application/src/test/java/de/rieckpil/blog/BookControllerTest.java
  */
-//@ExtendWith(SpringExtension.class)
+// As of Spring Boot 2.1, we no longer need to load the SpringExtension because it's included as a meta annotation in the Spring Boot test annotations like @DataJpaTest, @WebMvcTest, and @SpringBootTest.
 @WebMvcTest(EmployeeController.class)
 public class EmployeeControllerTest {
 
