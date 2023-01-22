@@ -20,6 +20,7 @@ Refer the section below on how to [get a specific commit(https://github.com/prem
 | 	3.		| Added test cases for EmployeeController to EmployeeControllerTest						| bfc6ce1d10cea15e6b3157356a77550bcd5354af		|
 | 	4.		| Added test cases for EmployeeService to EmployeeServiceTest							| e478d6669b2f08aeb5b938aceeeb49ad899bc6dd		|
 | 	5.		| Added test cases for repo methods used in EmployeeService to EmployeeRepositoryTest	| 9a74dc757c290901364678cf3552161433b58768		|
+| 	6.		| Added swagger to the rest application													| 4fa761154de6af998920da203f8eedf27d5795ea		|
 
 ### How to get certain commit from GitHub project
 ------------------------------------------------
@@ -34,11 +35,11 @@ git checkout effce06e231701b987568c4d4b2303404b535c75
 
 Rest API Calls
 --------------
-GET --> http://localhost:8080/employees
+GET --> http://localhost:8080/api/employees
 
-GET --> http://localhost:8080/employees/1
+GET --> http://localhost:8080/api/employees/1
 
-POST --> http://localhost:8080/employees
+POST --> http://localhost:8080/api/employees
 	Body: raw --> JSON (application/json)
 	
 	 {
@@ -47,7 +48,7 @@ POST --> http://localhost:8080/employees
         "role": "wizard"
  	}
  	
-PUT --> http://localhost:8080/employees/3
+PUT --> http://localhost:8080/api/employees/3
 	Body: raw --> JSON (application/json)
 	
 	 {
@@ -56,4 +57,6 @@ PUT --> http://localhost:8080/employees/3
         "role": "old wizard"
  	} 	
  	
-DELETE --> http://localhost:8080/employees/3 	
+DELETE --> http://localhost:8080/api/employees/3 	
+
+4. Access the swagger ui @ http://localhost:8080/swagger-ui.html
