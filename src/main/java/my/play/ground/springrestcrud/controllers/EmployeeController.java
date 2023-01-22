@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import my.play.ground.springrestcrud.models.Employee;
 import my.play.ground.springrestcrud.services.EmployeeService;
 
 @RestController
+@RequestMapping("/api")
 public class EmployeeController {
 
 	@Autowired
