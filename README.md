@@ -59,4 +59,14 @@ PUT --> http://localhost:8080/api/employees/3
  	
 DELETE --> http://localhost:8080/api/employees/3 	
 
+
+GET with Request body (to send huge data) --> http://localhost:8080/api/employees/employee-as-payload-in-get
+	Body: raw --> JSON (application/json)
+	
+	 {
+        "id": 3,
+        "name": "Gandalf",
+        "role": "wizard"
+ 	}
+
 4. Access the swagger ui @ http://localhost:8080/swagger-ui.html

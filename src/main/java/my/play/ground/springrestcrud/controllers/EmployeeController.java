@@ -43,6 +43,13 @@ public class EmployeeController {
 	public Employee getEmployee(@PathVariable Long id) {
 		return employeeService.getEmployee(id);
 	}
+	
+	
+	// Employee as part of request body in a Get mapping
+	@GetMapping("/employees/employee-as-payload-in-get")
+	public Employee getEmployee(@RequestBody Employee employee) {
+		return employee;
+	}
 
 	@PutMapping("/employees/{id}")
 	Employee updateEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
