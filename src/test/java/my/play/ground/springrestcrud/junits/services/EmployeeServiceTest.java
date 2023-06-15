@@ -1,6 +1,5 @@
-package my.play.ground.springrestcrud.services;
+package my.play.ground.springrestcrud.junits.services;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
@@ -24,6 +23,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import my.play.ground.springrestcrud.exceptions.EmployeeNotFoundException;
 import my.play.ground.springrestcrud.models.Employee;
 import my.play.ground.springrestcrud.repositories.EmployeeRepository;
+import my.play.ground.springrestcrud.services.EmployeeService;
 
 /**
  * https://www.youtube.com/watch?v=gIb_m06XeQE
@@ -36,6 +36,9 @@ public class EmployeeServiceTest {
 	@MockBean
 	private EmployeeRepository repository;
 
+	// InjectMocks take the mocked employee repository and uses that mock in
+	// employeeService
+	// instead of autowiring the actual EmployeeRepository
 	@InjectMocks
 	private EmployeeService employeeService;
 
@@ -154,7 +157,7 @@ public class EmployeeServiceTest {
 		verify(repository, times(1)).findById(anyLong());
 		verify(repository, times(2)).save(any());
 	}
-	
+
 	@Test
 	public void createOrUpdateEmployee_ShouldSaveEmployee_WhenEmployeeNotPresent() throws Exception {
 		Employee employee = new Employee(1, "Gandalf", "wizard");

@@ -1,10 +1,9 @@
-package my.play.ground.springrestcrud.repositories;
+package my.play.ground.springrestcrud.junits.repositories;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import my.play.ground.springrestcrud.models.Employee;
+import my.play.ground.springrestcrud.repositories.EmployeeRepository;
 
 /**
  * These tests are not required as there are no methods in our
@@ -79,7 +79,7 @@ public class EmployeeRepositoryTest {
 		// persistFlushFind throws 'detached entity passed to persist'
 		Employee employee = new Employee("Bilbo Baggins", "burglar");
 		assertThat(employee.getId(), nullValue());
-		
+
 		Employee savedEmployee = testEntityManager.persistFlushFind(employee);
 
 		// act & assert
@@ -96,7 +96,7 @@ public class EmployeeRepositoryTest {
 
 		// verify
 	}
-	
+
 	@Test
 	public void findById_ShouldReturnEmpty_WhenNoEmployeePresent() {
 		// arrange - store the data in the db testEntityManager
@@ -106,7 +106,7 @@ public class EmployeeRepositoryTest {
 
 		// Employee
 		assertThat(optEmployee.isEmpty(), is(true));
-		
+
 		// verify
 	}
 
@@ -117,7 +117,7 @@ public class EmployeeRepositoryTest {
 		// persistFlushFind throws 'detached entity passed to persist'
 		Employee employee = new Employee("Gandalf", "wizard");
 		assertThat(employee.getId(), nullValue());
-		
+
 		Employee savedEmployee = testEntityManager.persistFlushFind(employee);
 
 		// act & assert
