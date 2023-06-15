@@ -1,5 +1,6 @@
 package my.play.ground.springrestcrud.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import my.play.ground.springrestcrud.models.Employee;
@@ -28,20 +30,27 @@ public class EmployeeController {
 	// Aggregate root
 	// tag::get-aggregate-root[]
 	@GetMapping("/employees")
-	public List<Employee> getEmployees() {
-		return employeeService.getAllEmployees();
+	public List<Employee> getEmployees(@RequestParam(required = false) Long id) {
+	List<Employee> lstEmployees = new ArrayList<Employee>();
+	if (id != null) {
+		Employee employee = employeeService.getEmployee(id);
+		lstEmployees.add(employee);
+	} else {
+		lstEmployees = employeeService.getAllEmployees();
 	}
+	return lstEmployees;
+}
 	// end::get-aggregate-root[]
 
 	@PostMapping("/employees")
 	public Employee createEmployee(@RequestBody Employee newEmployee) {
 		return employeeService.createEmployee(newEmployee);
 	}
-
+	
 	// Single item
 	@GetMapping("/employees/{id}")
-	public Employee getEmployee(@PathVariable Long id) {
-		return employeeService.getEmployee(id);
+	public Employee getEmployee(@PathVariable(name = "id") Long employeeId) {
+		return employeeService.getEmployee(employeeId);
 	}
 	
 	
