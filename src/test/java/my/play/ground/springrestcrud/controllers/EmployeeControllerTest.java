@@ -58,7 +58,7 @@ public class EmployeeControllerTest {
 	private ObjectMapper objectMapper;
 
 	@Test
-	@DisplayName("GET /employees - Employees found")
+	@DisplayName("GET /api/employees - Employees found")
 	public void getAllEmployees_ShouldReturnHttp200_With2Employees_WhenEmployeesPresent() throws Exception {
 		// arrange - train your mock
 		given(employeeService.getAllEmployees()).willReturn(
@@ -66,7 +66,7 @@ public class EmployeeControllerTest {
 						new Employee(2, "Frodo Baggins", "thief")));
 
 		// act & assert
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/employees"))
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees"))
 		 			// Validate the response code and content type
 					.andExpect(status().isOk())
 					.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
@@ -84,13 +84,13 @@ public class EmployeeControllerTest {
 	}
 
 	@Test
-	@DisplayName("GET /employees - No Employes found")
+	@DisplayName("GET /api/employees - No Employes found")
 	public void getAllEmployees_ShouldReturnHttp200_EmptyList_WhenNoEmployeesPresent() throws Exception {
 		// arrange - train your mock
 		given(employeeService.getAllEmployees()).willReturn(Collections.EMPTY_LIST);
 
 		// act & assert
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/employees"))
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees"))
 					// Validate the response code and content type
 					.andExpect(status().isOk())
 					.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
@@ -102,13 +102,13 @@ public class EmployeeControllerTest {
 	}
 
 	@Test
-	@DisplayName("GET /employees/1 - Found")
+	@DisplayName("GET /api/employees/1 - Found")
 	public void getEmployeeById_ShouldReturnHttp200_WithOneEmployee_WhenPresent() throws Exception {
 		// arrange - train your mock
 		given(employeeService.getEmployee(anyLong())).willReturn(new Employee(1, "Bilbo Baggins", "burglar"));
 
 		// act & assert
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/employees/{id}", 1))
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees/{id}", 1))
 					// Validate the response code and content type
 					.andExpect(status().isOk())
 					.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
@@ -122,13 +122,13 @@ public class EmployeeControllerTest {
 	}
 
 	@Test
-	@DisplayName("GET /employees/1 - Not Found")
+	@DisplayName("GET /api/employees/1 - Not Found")
 	public void getEmployeeById_ShouldReturnEmployeeNotFoundException_WhenEmptyNotPresent() throws Exception {
 		// arrange - train your mock
 		given(employeeService.getEmployee(anyLong())).willThrow(new EmployeeNotFoundException(anyLong()));
 
 		// act & assert
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/employees/{id}", 1))
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees/{id}", 1))
 					// Validate the response code
 					.andExpect(status().isNotFound());
 
@@ -137,7 +137,7 @@ public class EmployeeControllerTest {
 	}
 
 	@Test
-	@DisplayName("POST /employees")
+	@DisplayName("POST /api/employees")
 	public void createNewEmploye_ShouldReturnHttp200_NewEmployeeWithIdPopulated()
 			throws JsonProcessingException, Exception {
 		Employee employee = new Employee(1, "Gandalf", "wizard");
@@ -148,7 +148,7 @@ public class EmployeeControllerTest {
 
 		// act & assert
 		this.mockMvc
-				.perform(MockMvcRequestBuilders.post("/employees") // this is the url
+				.perform(MockMvcRequestBuilders.post("/api/employees") // this is the url
 						.contentType(MediaType.APPLICATION_JSON)
 						// this is the first parameter to the method createEmployee in the controller
 						.content(objectMapper.writeValueAsString(employee))) 
@@ -179,7 +179,7 @@ public class EmployeeControllerTest {
 
 		// act & assert
 		this.mockMvc
-				.perform(MockMvcRequestBuilders.post("/employees") // this is the url
+				.perform(MockMvcRequestBuilders.post("/api/employees") // this is the url
 						.contentType(MediaType.APPLICATION_JSON)
 						// this is the first parameter to the method createEmployee in the controller
 						.content(objectMapper.writeValueAsString(employee)))
@@ -201,7 +201,7 @@ public class EmployeeControllerTest {
 
 		// act & assert
 		employee.setRole("the " + employee.getRole());
-		this.mockMvc.perform(MockMvcRequestBuilders.put("/employees/{id}", 1) // this is the url in the controller
+		this.mockMvc.perform(MockMvcRequestBuilders.put("/api/employees/{id}", 1) // this is the url in the controller
 						.contentType(MediaType.APPLICATION_JSON)
 						// this is the first parameter to the method updateEmployee in the controller 
 						.content(objectMapper.writeValueAsString(employee)))
@@ -234,7 +234,7 @@ public class EmployeeControllerTest {
 
 		// act & assert
 		this.mockMvc
-				.perform(MockMvcRequestBuilders.post("/employees") // this is the url
+				.perform(MockMvcRequestBuilders.post("/api/employees") // this is the url
 						.contentType(MediaType.APPLICATION_JSON)
 						// this is the first parameter to the method createEmployee in the controller
 						.content(objectMapper.writeValueAsString(employee)))
@@ -253,7 +253,7 @@ public class EmployeeControllerTest {
 		given(employeeService.getEmployee(anyLong())).willReturn(employee);
 
 		// act & assert
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/employees/{id}", 1))
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees/{id}", 1))
 					// Validate the response code and content type
 					.andExpect(status().isOk())
 					.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
@@ -265,7 +265,7 @@ public class EmployeeControllerTest {
 		/**
 		 * -------------------- deleteById - should delete employee --------------------
 		 */
-		this.mockMvc.perform(MockMvcRequestBuilders.delete("/employees/{id}", 1)).andExpect(status().isOk());
+		this.mockMvc.perform(MockMvcRequestBuilders.delete("/api/employees/{id}", 1)).andExpect(status().isOk());
 
 		/**
 		 * -------------------- getEmployeeById - this should throw
@@ -275,7 +275,7 @@ public class EmployeeControllerTest {
 		given(employeeService.getEmployee(anyLong())).willThrow(new EmployeeNotFoundException(anyLong()));
 
 		// act & assert
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/employees/{id}", 1))
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees/{id}", 1))
 					.andExpect(status().isNotFound());
 
 		// verify that methods were invoked as we have used a mock service
