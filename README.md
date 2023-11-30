@@ -23,6 +23,7 @@ Refer the section below on how to [get a specific commit(https://github.com/prem
 | 	6.		| Added swagger to the rest application																							| 4fa761154de6af998920da203f8eedf27d5795ea		|
 | 	7.		| Added spring actuator 																										| 24b1930c9da383f1a8c9a94e37952d973cb61033		|
 | 	8.		| Added h2 db properties to applicatoin.properties and updated LoadDatabase with comments on how to load data into db better 	| 1b3c69efd0602441bd27562af98aebcc83bc5a91		|
+| 	9.		| Changed to derby from h2 db and using schema.sql and data.sql to load the database 											| 581079353144c8e562f2e944a904568fd056a1dd		|
 
 ### How to get certain commit from GitHub project
 ------------------------------------------------
@@ -79,3 +80,28 @@ Access the swagger ui @ http://localhost:8080/swagger-ui.html
 Actuator
 --------
 Access the actuator health endpoint @ http://localhost:8080/actuator/health
+
+Derby DB
+--------
+DERBY_HOME: D:\MyApps\DB\Derby\10.15.2.0\db-derby-10.15.2.0-bin
+
+1. Start the Derby Server in first command prompt using the below command at the location %DERBY_HOME%\bin
+%DERBY_HOME%\bin>startNetworkServer.bat
+
+2. Start the Derby client in second command prompt using the below commands at the location %DERBY_HOME%\bin
+Note: The database name used is EmployeeDatabase
+%DERBY_HOME%\bin>ij.bat
+connect 'jdbc:derby://localhost:1527/EmployeeDatabase;create=true';  
+
+CREATE TABLE Employee (
+   ID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+   NAME VARCHAR(255),
+   ROLE VARCHAR(255),
+   PRIMARY KEY (Id)
+);
+
+3. When the application starts the second time - it fails as it tries to execute the schema.sql
+In the second command prompt where the Derby client is running execute the following commands - ensure the employee table is deleted and start the application again.
+show tables;
+DROP TABLE derbyuser.employee;
+show tables;
