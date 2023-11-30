@@ -4,12 +4,16 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Employee {
 
-	private @Id @GeneratedValue Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// Using GenerationType.AUTO causes hibernate to search for hibernate_sequence and fails.
+	private Long id;
 	private String name;
 	private String role;
 
@@ -18,7 +22,7 @@ public class Employee {
 
 	public Employee(String name, String role) {
 		this.name = name;
-		this.role = role;
+		this.role = role; 
 	}
 	
 	public Employee(int id, String name, String role) {
