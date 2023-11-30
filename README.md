@@ -13,14 +13,16 @@ Commits and their associated topics
 -----------------------------------
 Refer the section below on how to [get a specific commit(https://github.com/premvinodh/spring-rest-crud#how-to-get-certain-commit-from-github-project)].
 
-| Sl.No		| Topic                                       											| Commit Hash           						|
-|:---------:|---------------------------------------------------------------------------------------|:---------------------------------------------:|
-| 	1.		| Spring Rest CRUD Operations on Employee												| effce06e231701b987568c4d4b2303404b535c75		|
-| 	2.		| Autowired beans and added EmployeeService												| efb1d27967232e5f81166bb8d0dac323ce1c0596		|
-| 	3.		| Added test cases for EmployeeController to EmployeeControllerTest						| bfc6ce1d10cea15e6b3157356a77550bcd5354af		|
-| 	4.		| Added test cases for EmployeeService to EmployeeServiceTest							| e478d6669b2f08aeb5b938aceeeb49ad899bc6dd		|
-| 	5.		| Added test cases for repo methods used in EmployeeService to EmployeeRepositoryTest	| 9a74dc757c290901364678cf3552161433b58768		|
-| 	6.		| Added swagger to the rest application													| 4fa761154de6af998920da203f8eedf27d5795ea		|
+| Sl.No		| Topic                                       																					| Commit Hash           						|
+|:---------:|-------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------:|
+| 	1.		| Spring Rest CRUD Operations on Employee																						| effce06e231701b987568c4d4b2303404b535c75		|
+| 	2.		| Autowired beans and added EmployeeService																						| efb1d27967232e5f81166bb8d0dac323ce1c0596		|
+| 	3.		| Added test cases for EmployeeController to EmployeeControllerTest																| bfc6ce1d10cea15e6b3157356a77550bcd5354af		|
+| 	4.		| Added test cases for EmployeeService to EmployeeServiceTest																	| e478d6669b2f08aeb5b938aceeeb49ad899bc6dd		|
+| 	5.		| Added test cases for repo methods used in EmployeeService to EmployeeRepositoryTest											| 9a74dc757c290901364678cf3552161433b58768		|
+| 	6.		| Added swagger to the rest application																							| 4fa761154de6af998920da203f8eedf27d5795ea		|
+| 	7.		| Added spring actuator 																										| 24b1930c9da383f1a8c9a94e37952d973cb61033		|
+| 	8.		| Added h2 db properties to applicatoin.properties and updated LoadDatabase with comments on how to load data into db better 	| 1b3c69efd0602441bd27562af98aebcc83bc5a91		|
 
 ### How to get certain commit from GitHub project
 ------------------------------------------------
@@ -69,4 +71,11 @@ GET with Request body (to send huge data) --> http://localhost:8080/api/employee
         "role": "wizard"
  	}
 
-4. Access the swagger ui @ http://localhost:8080/swagger-ui.html
+Swagger
+-------
+Access the swagger ui @ http://localhost:8080/swagger-ui.html
+
+
+Actuator
+--------
+Access the actuator health endpoint @ http://localhost:8080/actuator/health
