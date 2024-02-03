@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringRestCrudApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Entering main");
 		SpringApplication.run(SpringRestCrudApplication.class, args);
 	}
 }
