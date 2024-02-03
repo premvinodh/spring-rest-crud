@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		String s = "";
+		String s = "11111";
 		return application.sources(SpringRestCrudApplication.class);
 	}
 
