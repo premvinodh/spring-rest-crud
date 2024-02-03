@@ -41,4 +41,8 @@ public class EmployeeService {
 	public void deleteEmployee(Long id) {
 		repository.deleteById(id);
 	}
+	
+	public void deleteEmployee1(Long id) {
+		repository.deleteById(id);
+	}
 }
